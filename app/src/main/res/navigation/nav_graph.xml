@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_hospitalServiceFragment2"
+            app:destination="@id/hospitalServiceFragment2" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -23,6 +26,15 @@
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hospitalServiceFragment2"
+        android:name="fr.uha40.mendele.hospital.fragments.HospitalServiceFragment"
+        android:label="fragment_hospital_service"
+        tools:layout="@layout/fragment_hospital_service" >
+        <action
+            android:id="@+id/action_hospitalServiceFragment2_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>
