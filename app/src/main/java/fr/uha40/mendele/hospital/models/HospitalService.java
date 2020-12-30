@@ -18,4 +18,12 @@ public class HospitalService {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
 }

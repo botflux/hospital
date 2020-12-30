@@ -2,13 +2,18 @@ package fr.uha40.mendele.hospital.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import fr.uha40.mendele.hospital.R;
+import fr.uha40.mendele.hospital.databinding.FragmentHospitalServiceBinding;
+import fr.uha40.mendele.hospital.models.factories.RandomHospitalServiceFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +21,9 @@ import fr.uha40.mendele.hospital.R;
  * create an instance of this fragment.
  */
 public class HospitalServiceFragment extends Fragment {
+
+    private HospitalServiceViewModel mViewModel;
+    private FragmentHospitalServiceBinding mBinding;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,6 +57,13 @@ public class HospitalServiceFragment extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mViewModel = ViewModelProviders.of(this).get(HospitalServiceViewModel.class);
+        mBinding.setHospitalService(RandomHospitalServiceFactory.getInstance().create());
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -61,6 +76,8 @@ public class HospitalServiceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hospital_service, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_hospital_service, container, false);
+
+        return mBinding.getRoot();
     }
 }
