@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import fr.uha40.mendele.hospital.database.AppDatabase;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -23,9 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show());
+        AppDatabase.createInstance(getApplicationContext());
     }
 
     @Override

@@ -1,6 +1,11 @@
 package fr.uha40.mendele.hospital.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class HospitalService {
+    @PrimaryKey(autoGenerate = true)
     protected long id;
     protected String serviceName;
 
@@ -25,5 +30,13 @@ public class HospitalService {
 
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
+    }
+
+    @Override
+    public String toString() {
+        return "HospitalService{" +
+                "id=" + id +
+                ", serviceName='" + serviceName + '\'' +
+                '}';
     }
 }
