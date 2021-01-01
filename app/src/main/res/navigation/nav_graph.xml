@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/hospitalServiceList">
 
     <fragment
         android:id="@+id/FirstFragment"
@@ -36,5 +36,17 @@
         <action
             android:id="@+id/action_hospitalServiceFragment2_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_hospitalServiceFragment2_to_hospitalServiceList"
+            app:destination="@id/hospitalServiceList" />
+    </fragment>
+    <fragment
+        android:id="@+id/hospitalServiceList"
+        android:name="fr.uha40.mendele.hospital.fragments.HospitalServiceList"
+        android:label="hospital_service_list_fragment"
+        tools:layout="@layout/hospital_service_list_fragment" >
+        <action
+            android:id="@+id/action_hospitalServiceList_to_hospitalServiceFragment2"
+            app:destination="@id/hospitalServiceFragment2" />
     </fragment>
 </navigation>

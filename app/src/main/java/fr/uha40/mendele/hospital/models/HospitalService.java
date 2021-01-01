@@ -1,6 +1,7 @@
 package fr.uha40.mendele.hospital.models;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -11,6 +12,7 @@ public class HospitalService {
 
     public HospitalService() { this.id = 0; }
 
+    @Ignore
     public HospitalService(String serviceName) {
         this();
         this.serviceName = serviceName;

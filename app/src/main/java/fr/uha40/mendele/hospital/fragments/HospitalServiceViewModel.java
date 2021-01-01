@@ -10,11 +10,10 @@ import fr.uha40.mendele.hospital.models.HospitalService;
 
 public class HospitalServiceViewModel extends ViewModel {
     private HospitalServiceDao hospitalServiceDao;
-    private HospitalService hospitalService;
 
     public void saveHospitalService(HospitalService hospitalServiceToSave) {
         Executor executor = Executors.newSingleThreadExecutor();
-        executor.execute(() -> hospitalServiceDao.insertAll(hospitalServiceToSave));
+        executor.execute(() -> hospitalServiceDao.insert(hospitalServiceToSave));
     }
 
     public void setHospitalServiceDao(HospitalServiceDao hospitalServiceDao) {
