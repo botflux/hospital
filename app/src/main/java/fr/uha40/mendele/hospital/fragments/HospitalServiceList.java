@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -71,6 +72,16 @@ public class HospitalServiceList extends Fragment {
             public HospitalServiceHolder(@NonNull HospitalServiceListItemBinding binding) {
                 super(binding.getRoot());
                 this.binding = binding;
+                this.binding.getRoot().setOnClickListener(view -> {
+                    int position = getLayoutPosition();
+                    HospitalService hospitalService = hospitalServices.get(position);
+                    HospitalServiceListDirections.ActionHospitalServiceListToHospitalServiceFragment2 action = HospitalServiceListDirections.actionHospitalServiceListToHospitalServiceFragment2();
+                    action.setId(hospitalService.getId());
+
+                    NavHostFragment
+                            .findNavController(HospitalServiceList.this)
+                            .navigate(action);
+                });
 //                this.binding.getRoot().setOnClickListener();
             }
         }

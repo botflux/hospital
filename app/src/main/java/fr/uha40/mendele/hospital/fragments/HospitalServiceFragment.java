@@ -37,35 +37,14 @@ public class HospitalServiceFragment extends Fragment {
     private HospitalServiceViewModel mViewModel;
     private FragmentHospitalServiceBinding mBinding;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private long id = -1;
 
     public HospitalServiceFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HospitalServiceFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HospitalServiceFragment newInstance(String param1, String param2) {
-        HospitalServiceFragment fragment = new HospitalServiceFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static HospitalServiceFragment newInstance() {
+        return new HospitalServiceFragment();
     }
 
     @Override
@@ -73,7 +52,14 @@ public class HospitalServiceFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(HospitalServiceViewModel.class);
         mViewModel.setHospitalServiceDao(AppDatabase.getInstance().hospitalServiceDao());
-        mBinding.setHospitalService(RandomHospitalServiceFactory.getInstance().create());
+        mBinding.setHospitalService(new HospitalService());
+        mViewModel.getHospitalService().observe(getViewLifecycleOwner(), hospitalService -> mBinding.setHospitalService(hospitalService));
+
+        if (id != -1) {
+            mViewModel.setId(id);
+        } else {
+            mBinding.setHospitalService(new HospitalService());
+        }
     }
 
     @Override
@@ -82,8 +68,9 @@ public class HospitalServiceFragment extends Fragment {
         setHasOptionsMenu(true);
 
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            id = HospitalServiceFragmentArgs.fromBundle(getArguments()).getId();
+        } else {
+            id = -1;
         }
     }
 
@@ -109,6 +96,7 @@ public class HospitalServiceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_hospital_service, container, false);
+
 
         return mBinding.getRoot();
     }

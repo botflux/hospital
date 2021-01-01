@@ -3,6 +3,7 @@ package fr.uha40.mendele.hospital.database;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -16,8 +17,8 @@ public interface HospitalServiceDao {
     LiveData<List<HospitalService>> getAll();
 
     @Query("SELECT * FROM hospitalservice WHERE id = :id")
-    HospitalService findById(long id);
+    LiveData<HospitalService> findById(long id);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert (HospitalService hospitalServices);
 }

@@ -1,4 +1,6 @@
 //apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'com.android.application'
+apply plugin: 'androidx.navigation.safeargs'
 
 buildscript {
     repositories {
@@ -11,9 +13,10 @@ buildscript {
 }
 
 
-plugins {
-    id 'com.android.application'
-}
+//plugins {
+//    id 'com.android.application'
+//    id 'androidx.navigation.safeargs'
+//}
 
 android {
     compileSdkVersion 30
