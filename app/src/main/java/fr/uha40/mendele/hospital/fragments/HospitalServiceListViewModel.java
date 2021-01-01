@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import fr.uha40.mendele.hospital.database.HospitalServiceDao;
 import fr.uha40.mendele.hospital.models.HospitalService;
@@ -25,5 +27,8 @@ public class HospitalServiceListViewModel extends ViewModel {
         return hospitalServices;
     }
 
-    // TODO: Implement the ViewModel
+    public void deleteHospitalService (HospitalService hospitalService) {
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> hospitalServiceDao.delete(hospitalService));
+    }
 }

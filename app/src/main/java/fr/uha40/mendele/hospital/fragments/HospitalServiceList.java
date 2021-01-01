@@ -82,6 +82,13 @@ public class HospitalServiceList extends Fragment {
                             .findNavController(HospitalServiceList.this)
                             .navigate(action);
                 });
+
+                this.binding.getRoot().setOnLongClickListener(view -> {
+                    int position = getLayoutPosition();
+                    HospitalService hospitalService = hospitalServices.get(position);
+                    mViewModel.deleteHospitalService(hospitalService);
+                    return true;
+                });
 //                this.binding.getRoot().setOnClickListener();
             }
         }
