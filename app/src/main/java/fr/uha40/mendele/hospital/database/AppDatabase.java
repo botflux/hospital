@@ -5,10 +5,14 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
+import fr.uha40.mendele.hospital.models.Bed;
 import fr.uha40.mendele.hospital.models.HospitalService;
+import fr.uha40.mendele.hospital.models.HospitalServiceWithBeds;
 
-@Database(entities = {HospitalService.class}, version = 1)
+@Database(entities = {HospitalService.class, Bed.class}, version = 1)
+@TypeConverters({ Converters.class })
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance = null;
 

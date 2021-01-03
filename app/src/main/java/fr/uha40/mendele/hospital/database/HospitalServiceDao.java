@@ -6,10 +6,12 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 
 import java.util.List;
 
 import fr.uha40.mendele.hospital.models.HospitalService;
+import fr.uha40.mendele.hospital.models.HospitalServiceWithBeds;
 
 @Dao
 public interface HospitalServiceDao {
@@ -25,4 +27,8 @@ public interface HospitalServiceDao {
 
     @Delete
     void delete(HospitalService hospitalService);
+
+//    @Transaction
+//    @Query("SELECT * FROM hospitalservice WHERE id = :id")
+//    LiveData<HospitalServiceWithBeds> findHospitalServiceWithBedsById (long id);
 }
