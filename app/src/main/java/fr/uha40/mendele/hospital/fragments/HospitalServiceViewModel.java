@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 
 import fr.uha40.mendele.hospital.database.HospitalServiceDao;
 import fr.uha40.mendele.hospital.models.HospitalService;
+import fr.uha40.mendele.hospital.models.HospitalServiceWithBeds;
 
 public class HospitalServiceViewModel extends ViewModel {
     private HospitalServiceDao hospitalServiceDao;

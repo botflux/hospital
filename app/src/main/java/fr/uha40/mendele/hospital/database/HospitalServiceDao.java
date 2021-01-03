@@ -28,7 +28,7 @@ public interface HospitalServiceDao {
     @Delete
     void delete(HospitalService hospitalService);
 
-//    @Transaction
-//    @Query("SELECT * FROM hospitalservice WHERE id = :id")
-//    LiveData<HospitalServiceWithBeds> findHospitalServiceWithBedsById (long id);
+    @Transaction
+    @Query("SELECT * FROM hospitalservice WHERE id = :id")
+    LiveData<HospitalServiceWithBeds> findHospitalServiceWithBedsById (long id);
 }
