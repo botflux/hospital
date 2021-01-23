@@ -75,7 +75,12 @@ public class HospitalServiceList extends Fragment {
                 this.binding.getRoot().setOnClickListener(view -> {
                     int position = getLayoutPosition();
                     HospitalService hospitalService = hospitalServices.get(position);
-                    HospitalServiceListDirections.ActionHospitalServiceListToHospitalServiceFragment2 action = HospitalServiceListDirections.actionHospitalServiceListToHospitalServiceFragment2();
+//                    HospitalServiceListDirections.ActionHospitalServiceListToHospitalServiceFragment2 action =
+//                            HospitalServiceListDirections.actionHospitalServiceListToHospitalServiceFragment2();
+
+                    HospitalServiceListDirections.ActionHospitalServiceListToBedListFragment action =
+                            HospitalServiceListDirections.actionHospitalServiceListToBedListFragment(hospitalService.getId());
+
                     action.setId(hospitalService.getId());
 
                     NavHostFragment

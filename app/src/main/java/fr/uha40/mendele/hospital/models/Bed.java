@@ -8,15 +8,16 @@ import androidx.room.PrimaryKey;
 public class Bed {
     @PrimaryKey
     protected long bedId;
+    protected String bedName;
     protected long hospitalServiceId;
     protected BedState currentState;
 
     public Bed() {
-        this(0, -1, BedState.Empty);
+        this(0, -1, BedState.Empty, "");
     }
 
     @Ignore
-    public Bed(long bedId, long hospitalServiceId, BedState currentState) {
+    public Bed(long bedId, long hospitalServiceId, BedState currentState, String bedName) {
         this.bedId = bedId;
         this.hospitalServiceId = hospitalServiceId;
         this.currentState = currentState;
@@ -44,5 +45,13 @@ public class Bed {
 
     public void setCurrentState(BedState currentState) {
         this.currentState = currentState;
+    }
+
+    public String getBedName() {
+        return bedName;
+    }
+
+    public void setBedName(String bedName) {
+        this.bedName = bedName;
     }
 }

@@ -11,7 +11,7 @@ import fr.uha40.mendele.hospital.models.Bed;
 import fr.uha40.mendele.hospital.models.HospitalService;
 import fr.uha40.mendele.hospital.models.HospitalServiceWithBeds;
 
-@Database(entities = {HospitalService.class, Bed.class}, version = 1)
+@Database(entities = {HospitalService.class, Bed.class}, version = 2)
 @TypeConverters({ Converters.class })
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance = null;
@@ -19,6 +19,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public static void createInstance(Context applicationContext) {
         instance = Room
                 .databaseBuilder(applicationContext, AppDatabase.class, "hospital.db")
+                .fallbackToDestructiveMigration()
                 .build();
     }
 

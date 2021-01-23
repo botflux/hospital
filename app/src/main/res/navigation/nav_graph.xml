@@ -23,5 +23,16 @@
         <action
             android:id="@+id/action_hospitalServiceList_to_hospitalServiceFragment2"
             app:destination="@id/hospitalServiceFragment2" />
+        <action
+            android:id="@+id/action_hospitalServiceList_to_bedListFragment"
+            app:destination="@id/bedListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bedListFragment"
+        android:name="fr.uha40.mendele.hospital.fragments.BedListFragment"
+        android:label="BedListFragment" >
+        <argument
+            android:name="id"
+            app:argType="long" />
     </fragment>
 </navigation>
