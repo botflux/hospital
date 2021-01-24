@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/bedFragment"
-        android:name="fr.uha40.mendele.hospital.fragments.BedFragment"
+        android:name="fr.uha40.mendele.hospital.fragments.BedCreationFragment"
         android:label="bed_fragment"
         tools:layout="@layout/bed_fragment" >
         <argument

@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 import fr.uha40.mendele.hospital.database.BedDao;
 import fr.uha40.mendele.hospital.models.Bed;
 
-public class BedViewModel extends ViewModel {
+public class BedCreationViewModel extends ViewModel {
     private BedDao bedDao;
     private long hospitalServiceId;
 

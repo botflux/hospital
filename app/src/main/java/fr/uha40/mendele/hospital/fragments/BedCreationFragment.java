@@ -17,22 +17,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import fr.uha40.mendele.hospital.R;
 import fr.uha40.mendele.hospital.database.AppDatabase;
 import fr.uha40.mendele.hospital.databinding.BedFragmentBinding;
 import fr.uha40.mendele.hospital.models.Bed;
 
-public class BedFragment extends Fragment {
+public class BedCreationFragment extends Fragment {
 
-    private BedViewModel mViewModel;
+    private BedCreationViewModel mViewModel;
     private BedFragmentBinding mBinding;
 
     private long hospitalServiceId = -1;
 
-    public static BedFragment newInstance() {
-        return new BedFragment();
+    public static BedCreationFragment newInstance() {
+        return new BedCreationFragment();
     }
 
     @Override
@@ -45,7 +43,7 @@ public class BedFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(BedViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(BedCreationViewModel.class);
         mViewModel.setBedDao(AppDatabase.getInstance().bedDao());
         mBinding.setBed(new Bed());
 
@@ -90,7 +88,7 @@ public class BedFragment extends Fragment {
         setHasOptionsMenu(true);
 
         if (getArguments() != null) {
-            BedFragmentArgs args = BedFragmentArgs.fromBundle(getArguments());
+            BedCreationFragmentArgs args = BedCreationFragmentArgs.fromBundle(getArguments());
             hospitalServiceId = args.getHospitalServiceId();
         } else {
             hospitalServiceId = -1;
