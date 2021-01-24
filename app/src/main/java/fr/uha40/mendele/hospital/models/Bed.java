@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Bed {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     protected long bedId;
     protected String bedName;
     protected long hospitalServiceId;

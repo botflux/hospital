@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
-            android:text="@{bed.toString()}"
+            android:text="@{bed.bedName}"
             android:textSize="18sp"
             tools:text="Service de réanimation"
             app:layout_constraintBottom_toBottomOf="parent"

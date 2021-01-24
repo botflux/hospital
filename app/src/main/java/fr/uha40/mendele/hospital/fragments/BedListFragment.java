@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +30,7 @@ public class BedListFragment extends Fragment {
 
     private BedListViewModel mViewModel;
     private BedListAdapter mAdapter;
+    private long id;
 
     public static BedListFragment newInstance() {
         return new BedListFragment();
@@ -43,13 +45,20 @@ public class BedListFragment extends Fragment {
         list.setLayoutManager(new LinearLayoutManager(root.getContext(), RecyclerView.VERTICAL, false));
 
         mAdapter = new BedListAdapter();
+        list.setAdapter(mAdapter);
 
         DividerItemDecoration divider = new DividerItemDecoration(list.getContext(), DividerItemDecoration.VERTICAL);
         divider.getDrawable().setAlpha(69);
         list.addItemDecoration(divider);
 
         root.findViewById(R.id.fab)
-                .setOnClickListener(view -> Snackbar.make(view, "Fab clicked", 1000).show());
+                .setOnClickListener(view -> {
+                    BedListFragmentDirections.ActionBedListFragmentToBedFragment action =
+                            BedListFragmentDirections.actionBedListFragmentToBedFragment(id);
+
+                    NavHostFragment.findNavController(BedListFragment.this)
+                            .navigate(action);
+                });
 
         return root;
     }
@@ -61,6 +70,12 @@ public class BedListFragment extends Fragment {
         mViewModel.setHospitalServiceDao(AppDatabase.getInstance().hospitalServiceDao());
         mViewModel.getHospitalServiceWithBeds()
             .observe(getViewLifecycleOwner(), hospitalServiceWithBeds -> mAdapter.setBeds(hospitalServiceWithBeds.getServiceBeds()));
+
+        if (getArguments() != null) {
+            BedListFragmentArgs args = BedListFragmentArgs.fromBundle(getArguments());
+            mViewModel.setId(args.getId());
+            id = args.getId();
+        }
         // TODO: Use the ViewModel
     }
 
@@ -89,7 +104,9 @@ public class BedListFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return beds.size();
+            return beds != null
+                    ? beds.size()
+                    : 0;
         }
 
 

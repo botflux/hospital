@@ -7,4 +7,5 @@
     <string name="plus_button">Plus button</string>
     <string name="action_save">Save</string>
     <string name="service_name">Service name</string>
+    <string name="hospital_bed_name">Hospital bed name</string>
 </resources>

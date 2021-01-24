@@ -96,8 +96,7 @@ public class HospitalServiceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_hospital_service, container, false);
-
-
+        
         return mBinding.getRoot();
     }
 

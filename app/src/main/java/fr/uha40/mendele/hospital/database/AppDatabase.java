@@ -11,7 +11,7 @@ import fr.uha40.mendele.hospital.models.Bed;
 import fr.uha40.mendele.hospital.models.HospitalService;
 import fr.uha40.mendele.hospital.models.HospitalServiceWithBeds;
 
-@Database(entities = {HospitalService.class, Bed.class}, version = 2)
+@Database(entities = {HospitalService.class, Bed.class}, version = 3)
 @TypeConverters({ Converters.class })
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance = null;
@@ -28,4 +28,5 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public abstract HospitalServiceDao hospitalServiceDao();
+    public abstract BedDao bedDao();
 }
