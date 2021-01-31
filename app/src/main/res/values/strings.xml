@@ -9,4 +9,9 @@
     <string name="service_name">Service name</string>
     <string name="hospital_bed_name">Hospital bed name</string>
     <string name="action_populate">Populate</string>
+    <string name="change_bed_current_state">Change bed current state</string>
+    <string name="empty">Empty</string>
+    <string name="occupied">Occupied</string>
+    <string name="cleaning">Cleaning</string>
+    <string name="defective">Defective</string>
 </resources>

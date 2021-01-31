@@ -16,11 +16,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import fr.uha40.mendele.hospital.R;
 import fr.uha40.mendele.hospital.database.AppDatabase;
 import fr.uha40.mendele.hospital.databinding.BedEditionFragmentBinding;
 import fr.uha40.mendele.hospital.models.Bed;
+import fr.uha40.mendele.hospital.models.BedState;
 
 public class BedEditionFragment extends Fragment {
 
@@ -43,8 +48,8 @@ public class BedEditionFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
