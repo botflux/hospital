@@ -20,14 +20,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.javafaker.Faker;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import fr.uha40.mendele.hospital.R;
 import fr.uha40.mendele.hospital.database.AppDatabase;
+import fr.uha40.mendele.hospital.database.BedDao;
 import fr.uha40.mendele.hospital.databinding.BedItemBinding;
 import fr.uha40.mendele.hospital.models.Bed;
+import fr.uha40.mendele.hospital.models.BedState;
 
 public class BedListFragment extends Fragment {
 
@@ -57,9 +63,25 @@ public class BedListFragment extends Fragment {
             case R.id.action_rename:
                 navigateToServiceNameEdition();
                 return true;
+            case R.id.action_populate:
+                populateDatabaseWithFakeData();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void populateDatabaseWithFakeData() {
+        BedDao bedDao = AppDatabase.getInstance().bedDao();
+        Faker faker = new Faker(Locale.FRANCE);
+        Executor executor = Executors.newSingleThreadExecutor();
+
+        executor.execute(() -> {
+            for (int i = 0; i < 10; i ++) {
+                Bed bed = new Bed(0, id, BedState.Empty, faker.name().title());
+                bedDao.insert(bed);
+            }
+        });
     }
 
     private void navigateToServiceNameEdition() {

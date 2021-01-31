@@ -21,6 +21,7 @@ public class Bed {
         this.bedId = bedId;
         this.hospitalServiceId = hospitalServiceId;
         this.currentState = currentState;
+        this.bedName = bedName;
     }
 
     public long getBedId() {

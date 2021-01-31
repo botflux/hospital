@@ -15,14 +15,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.javafaker.Faker;
+
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import fr.uha40.mendele.hospital.R;
 import fr.uha40.mendele.hospital.database.AppDatabase;
+import fr.uha40.mendele.hospital.database.BedDao;
+import fr.uha40.mendele.hospital.database.HospitalServiceDao;
 import fr.uha40.mendele.hospital.databinding.HospitalServiceListItemBinding;
+import fr.uha40.mendele.hospital.models.Bed;
 import fr.uha40.mendele.hospital.models.HospitalService;
 
 public class HospitalServiceList extends Fragment {
@@ -52,6 +61,36 @@ public class HospitalServiceList extends Fragment {
                 .navigate(R.id.action_hospitalServiceList_to_hospitalServiceFragment2));
 
         return root;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_populate:
+                populateDatabaseWithFakeData();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void populateDatabaseWithFakeData() {
+        HospitalServiceDao hospitalServiceDao = AppDatabase.getInstance().hospitalServiceDao();
+        Faker faker = new Faker(Locale.FRANCE);
+
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            for (int i = 0; i < 10; i ++) {
+                HospitalService hospitalService = new HospitalService(faker.name().title());
+                hospitalServiceDao.insert(hospitalService);
+            }
+        });
     }
 
     @Override
