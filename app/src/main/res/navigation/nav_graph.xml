@@ -21,11 +21,11 @@
         android:label="hospital_service_list_fragment"
         tools:layout="@layout/hospital_service_list_fragment" >
         <action
-            android:id="@+id/action_hospitalServiceList_to_hospitalServiceFragment2"
-            app:destination="@id/hospitalServiceFragment2" />
-        <action
             android:id="@+id/action_hospitalServiceList_to_bedListFragment"
             app:destination="@id/bedListFragment" />
+        <action
+            android:id="@+id/action_hospitalServiceList_to_hospitalServiceFragment2"
+            app:destination="@id/hospitalServiceFragment2" />
     </fragment>
     <fragment
         android:id="@+id/bedListFragment"
@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_bedListFragment_to_bedEditionFragment"
             app:destination="@id/bedEditionFragment" />
+        <action
+            android:id="@+id/action_bedListFragment_to_hospitalServiceFragment2"
+            app:destination="@id/hospitalServiceFragment2" />
     </fragment>
     <fragment
         android:id="@+id/bedFragment"

@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -34,6 +37,37 @@ public class BedListFragment extends Fragment {
 
     public static BedListFragment newInstance() {
         return new BedListFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_rename, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_rename:
+                navigateToServiceNameEdition();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void navigateToServiceNameEdition() {
+        BedListFragmentDirections.ActionBedListFragmentToHospitalServiceFragment2 action =
+                BedListFragmentDirections.actionBedListFragmentToHospitalServiceFragment2();
+        action.setId(id);
+
+        NavHostFragment.findNavController(this).navigate(action);
     }
 
     @Override
@@ -68,6 +102,7 @@ public class BedListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(BedListViewModel.class);
         mViewModel.setHospitalServiceDao(AppDatabase.getInstance().hospitalServiceDao());
+        mViewModel.setBedDao(AppDatabase.getInstance().bedDao());
         mViewModel.getHospitalServiceWithBeds()
             .observe(getViewLifecycleOwner(), hospitalServiceWithBeds -> mAdapter.setBeds(hospitalServiceWithBeds.getServiceBeds()));
 
@@ -128,6 +163,15 @@ public class BedListFragment extends Fragment {
 
                     NavHostFragment.findNavController(BedListFragment.this)
                             .navigate(action);
+                });
+
+                binding.getRoot().setOnLongClickListener(view -> {
+                    int layoutPosition = getLayoutPosition();
+                    Bed bed = beds.get(layoutPosition);
+
+                    mViewModel.deleteBed(bed);
+
+                    return true;
                 });
             }
         }
