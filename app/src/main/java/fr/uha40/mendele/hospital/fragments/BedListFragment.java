@@ -116,6 +116,19 @@ public class BedListFragment extends Fragment {
             public BedHolder(@NonNull BedItemBinding binding) {
                 super(binding.getRoot());
                 this.binding = binding;
+
+                binding.getRoot().setOnClickListener(view -> {
+                    int layoutPosition = getLayoutPosition();
+                    Bed bed = beds.get(layoutPosition);
+
+                    BedListFragmentDirections.ActionBedListFragmentToBedEditionFragment action =
+                            BedListFragmentDirections.actionBedListFragmentToBedEditionFragment();
+
+                    action.setBedId(bed.getBedId());
+
+                    NavHostFragment.findNavController(BedListFragment.this)
+                            .navigate(action);
+                });
             }
         }
     }

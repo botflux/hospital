@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_bedListFragment_to_bedFragment"
             app:destination="@id/bedFragment" />
+        <action
+            android:id="@+id/action_bedListFragment_to_bedEditionFragment"
+            app:destination="@id/bedEditionFragment" />
     </fragment>
     <fragment
         android:id="@+id/bedFragment"
@@ -46,5 +49,15 @@
         <argument
             android:name="hospitalServiceId"
             app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/bedEditionFragment"
+        android:name="fr.uha40.mendele.hospital.fragments.BedEditionFragment"
+        android:label="bed_edition_fragment"
+        tools:layout="@layout/bed_edition_fragment" >
+        <argument
+            android:name="bedId"
+            app:argType="long"
+            android:defaultValue="-1L" />
     </fragment>
 </navigation>
